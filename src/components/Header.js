@@ -1,6 +1,14 @@
 import styled from "styled-components";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase";
 
 function Header() {
+  const handleAuth = async () => {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider)
+      .then((result) => console.log(result))
+      .catch((error) => alert(error.message));
+  };
   return (
     <Nav>
       <Logo>
@@ -32,7 +40,7 @@ function Header() {
           <span>SERIES</span>
         </a>
       </NavMenu>
-      <Login>Login</Login>
+      <Login onClick={handleAuth}>Login</Login>
     </Nav>
   );
 }
