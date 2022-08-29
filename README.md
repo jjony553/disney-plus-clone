@@ -46,12 +46,12 @@ npm i @reduxjs/toolkit
 
 ## Screen Shot
 #### Desktop
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/55618626/187279038-6eb09cab-c52e-49fa-a9d0-74aeb8cd9090.gif)
+
 
 
 #### Responsive
-
-
-#### Phone(ios,android)
+![respo](https://user-images.githubusercontent.com/55618626/187277854-ee5acb57-a3a4-4b8c-ab58-7944bade21e3.gif)
 
 
 
