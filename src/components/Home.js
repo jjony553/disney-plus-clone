@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import db from "../firebase";
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
-import { collection, doc, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 
 function Home() {
   const dispatch = useDispatch();
@@ -28,28 +28,40 @@ function Home() {
       snapshot.docChanges().forEach((change) => {
         switch (change.doc.data().type) {
           case "recommend":
-            recommends.push({ id: change.doc.id, ...change.doc.data() });
+            recommends = [
+              ...recommends,
+              { id: change.doc.id, ...change.doc.data() },
+            ];
             break;
           case "new":
-            newDisneys.push({ id: change.doc.id, ...change.doc.data() });
+            newDisneys = [
+              ...newDisneys,
+              { id: change.doc.id, ...change.doc.data() },
+            ];
             break;
           case "original":
-            originals.push({ id: change.doc.id, ...change.doc.data() });
+            originals = [
+              ...originals,
+              { id: change.doc.id, ...change.doc.data() },
+            ];
             break;
           case "trending":
-            trending.push({ id: change.doc.id, ...change.doc.data() });
+            trending = [
+              ...trending,
+              { id: change.doc.id, ...change.doc.data() },
+            ];
             break;
         }
       });
+      dispatch(
+        setMovies({
+          recommend: recommends,
+          newDisney: newDisneys,
+          original: originals,
+          trending: trending,
+        })
+      );
     });
-    dispatch(
-      setMovies({
-        recommend: recommends,
-        newDisney: newDisneys,
-        original: originals,
-        trending: trending,
-      })
-    );
   }, [userName]);
 
   return (
