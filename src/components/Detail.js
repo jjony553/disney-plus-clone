@@ -12,7 +12,6 @@ function Detail() {
     getDoc(doc(db, "movies", id))
       .then((docSnap) => {
         if (docSnap.exists()) {
-          console.log(docSnap.data());
           setDetailData(docSnap.data());
         } else {
           console.log("no such document in firebase 🔥");
